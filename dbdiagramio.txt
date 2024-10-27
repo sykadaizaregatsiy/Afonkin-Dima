@@ -1,0 +1,48 @@
+Table Hub_Applicant{
+  applicant_id integer [primary key]
+  load_date timestamp
+  record_source varchar
+}
+
+Table Hub_License{
+  license_id integer [primary key]
+  load_date timestamp
+  record_source varchar
+}
+
+Table Lnk_Applicant_License{
+  applicant_id integer
+  license_id integer
+  application_date timestamp
+  load_date timestamp
+  record_source varchar
+}
+
+Table Sat_Applicant{
+  applicant_id integer
+  full_name varchar
+  date_of_birth timestamp
+  address varchar
+  phone_number varchar
+  load_date timestamp
+  record_source varchar
+}
+
+Table Sat_License{
+  license_id integer
+  license_type varchar
+  issue_date integer
+  expiration_date timestamp
+  status varchar
+  load_date timestamp
+  record_source varchar
+}
+
+
+Ref: Hub_Applicant.applicant_id < Lnk_Applicant_License.applicant_id
+
+Ref: Hub_License.license_id < Lnk_Applicant_License.license_id
+
+Ref: Sat_Applicant.applicant_id > Hub_Applicant.applicant_id
+
+Ref: Sat_License.license_id > Hub_License.license_id
